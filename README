@@ -9,7 +9,6 @@ For instance, to get PyPI index of packages, you might write::
     
     print http1.request('http://pypi.python.org/simple/').body
 
-
 request() method
 ================
 
