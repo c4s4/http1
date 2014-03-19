@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+# encoding=UTF-8
+
+from distutils.core import setup
+
+setup(
+    name = '<%= name %>',
+    version = '<%= version %>',
+    author = 'Michel Casabianca',
+    author_email = 'michel.casabianca@gmail.com',
+    packages = ['<%= package %>'],
+    url = 'http://pypi.python.org/pypi/<%= name %>/',
+    license = 'Apache Software License',
+    description = 'HTTP1 is an API to perform HTTP requests in a single call.',
+    long_description=open('README').read(),
+)
+

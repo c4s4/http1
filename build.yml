@@ -1,0 +1,65 @@
+# Build information
+- build:       http1
+  description: Build project http1
+  extends:     ':python:python.yml'
+  default:
+  - clean
+  - test
+  alias:
+    release:
+    - uncom
+    - py_clean
+    - py_check
+    - py_test
+    - upload
+    - tag
+
+# Build properties
+- properties:
+    name:          "http1"
+    version:       "0.1.3"
+    package:       :name
+    py_src_dir:    "."
+    py_test_dir:   "#{name}/test"
+    py_test_files: "*.py"
+    svn_root:      "svn+ssh://casa@sweetohm.org/home/svn"
+    svn_trunk:     "#{svn_root}/trunk/#{name}/"
+    svn_tag:       "#{svn_root}/tags/#{name}/RELEASE-#{version}/"
+
+# Build targets
+- target:      setup
+  description: Generate setup file
+  script:
+  - erb:
+      src:  "setup.py.erb"
+      dest: "setup.py"
+
+- target:      dist
+  depends:     setup
+  description: Generate distribution archive
+  script:
+  - mkdir: :py_build_dir
+  - "python setup.py sdist -d #{py_build_dir}"
+  - rm: MANIFEST
+
+- target:      upload
+  depends:     setup
+  description: Upload the distribution
+  script:
+  - mkdir: :py_build_dir
+  - "python setup.py sdist -d #{py_build_dir} register upload"
+  - rm: MANIFEST
+
+- target:      tag
+  description: Tag the release
+  script:
+  - "svn copy #{svn_trunk} #{svn_tag} -m 'Release #{version}'"
+
+- target:      uncom
+  description: Check that there are no uncommited changes
+  script:
+  - print: "Checking uncommitted changes..."
+  - if: "`svn status`.length > 0"
+    then:
+    - throw: "There are uncommitted changes"
+
