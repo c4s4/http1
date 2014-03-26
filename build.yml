@@ -19,12 +19,19 @@
     name:          "http1"
     version:       "0.1.3"
     package:       :name
-    py_src_dir:    "."
+    py_src_dir:    :name
+    py_chk_src:    :name
+    py_chk_cfg:    "pylint.cfg"
     py_test_dir:   "#{name}/test"
     py_test_files: "*.py"
     svn_root:      "svn+ssh://casa@sweetohm.org/home/svn"
     svn_trunk:     "#{svn_root}/trunk/#{name}/"
     svn_tag:       "#{svn_root}/tags/#{name}/RELEASE-#{version}/"
+    py_clean_files:
+    - "**/*.pyc"
+    - "**/*.pyo"
+    - "setup.py"
+    - "MANIFEST"
 
 # Build targets
 - target:      setup

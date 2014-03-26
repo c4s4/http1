@@ -18,8 +18,8 @@ import urlparse
 import base64
 
 class Response(object):
-    """HTTP response to encapsulates status code (200, 404, as an integer), 
-    message (such as 'OK', 'Not Found', as a string), headers (as a 
+    """HTTP response to encapsulates status code (200, 404, as an integer),
+    message (such as 'OK', 'Not Found', as a string), headers (as a
     dictionnary), and body (as a string)."""
 
     def __init__(self, status, message, headers={}, body=None):
