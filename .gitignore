@@ -1,5 +1,5 @@
 build
-setup.py
+env
+.idea
 *.pyc
-MANIFEST
 
