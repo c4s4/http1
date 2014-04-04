@@ -45,13 +45,13 @@ class Test(unittest.TestCase):
         except AttributeError:
             # if Python was not built with SSL support
             pass
-    
+
     def test_redirect(self):
         response = http1.request('http://cafebabe.free.fr')
         expected = 301
         actual = response.status
         self.assertEqual(expected, actual)
-    
+
 
 # Run unit tests when started on command line
 if __name__ == '__main__':

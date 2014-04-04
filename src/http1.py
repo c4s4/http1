@@ -40,7 +40,8 @@ class Response(object):
 
 def request(url, params={}, method='GET', body=None, headers={},
             content_type=None, content_length=True,
-            username=None, password=None, capitalize_headers=True):
+            username=None, password=None, capitalize_headers=True,
+            follow_redirect=True, max_redirect=3):
     """Perform a http_request:
     - url: the URL call, including protocol and parameters (such as
       'http://www.google.com?foo=1&bar=2').
@@ -112,6 +113,19 @@ def request(url, params={}, method='GET', body=None, headers={},
             if capitalize_headers:
                 _name = '-'.join(map(lambda s: s.capitalize(), _name.split('-'))) #pylint: disable=W0141
             _response_headers[_name] = _value
+    if _response.status >= 300 and _response.status < 400 and
+        follow_redirect:
+        if max_redirect <= 0:
+            raise Exception("Too many redirects")
+        location = _response_headers['Location']
+        return request(url=location, params=params, method=method,
+                       body=body, headers=headers,
+                       content_type=content_type,
+                       content_length=content_length,
+                       username=username, password=password,
+                       capitalize_headers=capitalize_headers,
+                       follow_redirect=True,
+                       max_redirect=max_redirect-1)
     return Response(status=_response.status,
                     message=_response.reason,
                     headers=_response_headers,
