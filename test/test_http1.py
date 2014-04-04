@@ -14,7 +14,12 @@ class Test(unittest.TestCase):
         self.assertEquals(200, response.status)
         self.assertEquals('OK', response.message)
         self.assertTrue('<title>Sweetohm</title>' in response.body)
-
+    
+    def test_status_ko(self):
+        response = http1.request('http://sweetohm.net/toto')
+        self.assertEquals(404, response.status)
+        self.assertEquals('Not Found', response.message)
+    
     def test_get_https_ok(self):
         try:
             headers = {'Accept-Language': 'fr'}
