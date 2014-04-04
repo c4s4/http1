@@ -10,15 +10,10 @@ import unittest
 class Test(unittest.TestCase):
 
     def test_get_ok(self):
-        headers = {'Accept-Language': 'fr'}
-        response = http1.request('http://www.google.com', headers=headers)
-        self.assertEquals(302, response.status)
-        self.assertEquals('Found', response.message)
-        location = response.headers['Location']
-        response = http1.request(location)
+        response = http1.request('http://www.google.com')
         self.assertEquals(200, response.status)
         self.assertEquals('OK', response.message)
-        self.assertTrue('<title>Google</title>' in response.body)
+        self.assertTrue('<title>Sweetohm</title>' in response.body)
 
     def test_get_found(self):
         response = http1.request('http://www.google.com')
