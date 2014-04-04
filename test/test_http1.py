@@ -10,7 +10,7 @@ import unittest
 class Test(unittest.TestCase):
 
     def test_get_ok(self):
-        response = http1.request('http://sweetohm.ney')
+        response = http1.request('http://sweetohm.net')
         self.assertEquals(200, response.status)
         self.assertEquals('OK', response.message)
         self.assertTrue('<title>Sweetohm</title>' in response.body)
@@ -29,6 +29,12 @@ class Test(unittest.TestCase):
 
     def test_redirect(self):
         response = http1.request('http://cafebabe.free.fr')
+        expected = 200
+        actual = response.status
+        self.assertEqual(expected, actual)
+        self.assertTrue('<title>Sweetohm</title>' in response.body)
+        response = http1.request('http://cafebabe.free.fr',
+                                 follow_redirect=False)
         expected = 301
         actual = response.status
         self.assertEqual(expected, actual)
