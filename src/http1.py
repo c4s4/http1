@@ -113,7 +113,7 @@ def request(url, params={}, method='GET', body=None, headers={},
             if capitalize_headers:
                 _name = '-'.join(map(lambda s: s.capitalize(), _name.split('-'))) #pylint: disable=W0141
             _response_headers[_name] = _value
-    if _response.status >= 300 and _response.status < 400 and
+    if _response.status >= 300 and _response.status < 400 and \
         follow_redirect:
         if max_redirect <= 0:
             raise Exception("Too many redirects")
