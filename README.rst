@@ -37,6 +37,8 @@ The parameters are the following:
   with username.
 - capitalize_headers: tells if headers should be capitalized (so that their
   names are all like 'Content-Type' for instance).
+- follow_redirect: tells if http1 should follow redirections (status codes 3xx).
+- max_redirect: maximum number of redirections to follow.
 
 This method returns the response as a Response object described hereafter.
 
@@ -52,6 +54,7 @@ string).
 Releases
 ========
 
+- **0.2.0** (*2014-04-05*): Added option follow_redirect.
 - **0.1.4** (*2014-04-04*): Project structure refactoring, included license in
   the archive.
 - **0.1.3** (*2013-07-05*): Fixed bug regarding matrix params.
