@@ -3,10 +3,7 @@
 
 import os
 import sys
-import inspect
-test_dir = os.path.dirname(inspect.currentframe().f_code.co_filename)
-src_dir = os.path.join(test_dir, '..', '..')
-sys.path.insert(0, src_dir)
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 import http1
 import unittest
 

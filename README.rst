@@ -52,8 +52,12 @@ string).
 Releases
 ========
 
-- 0.1.0 (2012-03-29): First public release.
-- 0.1.1 (2012-03-30): Documentation fixes.
-- 0.1.2 (2012-03-30): More documentation fixes.
-- 0.1.3 (2013-07-05): Fixed bug regarding matrix params.
+- **0.1.4** (*2014-04-04*): Project structure refactoring, included license in
+  the archive.
+- **0.1.3** (*2013-07-05*): Fixed bug regarding matrix params.
+- **0.1.2** (*2012-03-30*): More documentation fixes.
+- **0.1.1** (*2012-03-30*): Documentation fixes.
+- **0.1.0** (*2012-03-29*): First public release.
+
+Enjoy!
 
