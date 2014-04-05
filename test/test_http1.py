@@ -48,7 +48,7 @@ class Test(unittest.TestCase):
                           max_redirect=0)
         except http1.TooManyRedirectsException:
             pass
-    
+
     def test_methods(self):
         response = http1.get('http://www.sweetohm.net')
         self.assertEqual(200,response.status)

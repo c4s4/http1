@@ -143,33 +143,33 @@ def request(url, params={}, method='GET', body=None, headers={},
                     body=_response.read())
 
 
-def get(**kwargs):
-    return request(method='GET', **kwarg)
+def get(*args, **kwargs):
+    return request(*args, method='GET', **kwargs)
 
 
-def head(**kwargs):
-    return request(method='HEAD', **kwarg)
+def head(*args, **kwargs):
+    return request(*args, method='HEAD', **kwargs)
 
 
-def post(**kwargs):
-    return request(method='POST', **kwarg)
+def post(*args, **kwargs):
+    return request(*args, method='POST', **kwargs)
 
 
-def put(**kwargs):
-    return request(method='PUT', **kwarg)
+def put(*args, **kwargs):
+    return request(*args, method='PUT', **kwargs)
 
 
-def delete(**kwargs):
-    return request(method='DELETE', **kwarg)
+def delete(*args, **kwargs):
+    return request(*args, method='DELETE', **kwargs)
 
 
-def connect(**kwargs):
-    return request(method='CONNECT', **kwarg)
+def connect(*args, **kwargs):
+    return request(*args, method='CONNECT', **kwargs)
 
 
-def options(**kwargs):
-    return request(method='OPTIONS', **kwarg)
+def options(*args, **kwargs):
+    return request(*args, method='OPTIONS', **kwargs)
 
 
-def trace(**kwargs):
-    return request(method='TRACE', **kwarg)
+def trace(*args, **kwargs):
+    return request(*args, method='TRACE', **kwargs)
