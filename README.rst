@@ -38,7 +38,8 @@ The parameters are the following:
 - capitalize_headers: tells if headers should be capitalized (so that their
   names are all like 'Content-Type' for instance).
 - follow_redirect: tells if http1 should follow redirections (status codes 3xx).
-- max_redirect: maximum number of redirections to follow.
+- max_redirect: maximum number of redirections to follow. If there are too many
+  redirects, a TooManyRedirectsException is raised.
 
 This method returns the response as a Response object described hereafter.
 
