@@ -56,7 +56,7 @@ class Test(unittest.TestCase):
         response = http1.head('http://cafebabe.free.fr',
                               follow_redirect=False)
         self.assertEqual(301, response.status)
-        self.assertEqual('http://sweetohm.net',
+        self.assertEqual('http://sweetohm.net/',
                          response.headers['Location'])
 
 
