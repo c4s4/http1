@@ -46,8 +46,8 @@ class Test(unittest.TestCase):
         try:
             http1.request('http://cafebabe.free.fr',
                           max_redirect=0)
-        except Exception, e:
-            self.assertEqual('Too many redirects', e.message)
+        except http1.TooManyRedirectsException:
+            pass
 
 
 # Run unit tests when started on command line

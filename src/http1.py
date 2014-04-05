@@ -38,6 +38,12 @@ class Response(object):
         return "Response(status=%s, message='%s', headers=%s, body='%s')" %\
             (self.status, self.message, self.headers, _body)
 
+
+class TooManyRedirectsException(Exception):
+
+    pass
+
+
 def request(url, params={}, method='GET', body=None, headers={},
             content_type=None, content_length=True,
             username=None, password=None, capitalize_headers=True,
@@ -116,7 +122,7 @@ def request(url, params={}, method='GET', body=None, headers={},
     if _response.status >= 300 and _response.status < 400 and \
         follow_redirect:
         if max_redirect <= 0:
-            raise Exception("Too many redirects")
+            raise TooManyRedirectsException
         location = _response_headers['Location']
         return request(url=location, params=params, method=method,
                        body=body, headers=headers,

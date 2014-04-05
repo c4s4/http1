@@ -2,5 +2,5 @@
 # encoding: UTF-8
 
 #pylint: disable=W0403
-from http1 import request, Response
+from http1 import request, Response, TooManyRedirectsException
 
