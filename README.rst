@@ -55,6 +55,7 @@ string).
 Releases
 ========
 
+- **0.2.1** (*2014-04-05*): Added TooManyRedirectsException.
 - **0.2.0** (*2014-04-05*): Added option follow_redirect.
 - **0.1.4** (*2014-04-04*): Project structure refactoring, included license in
   the archive.
