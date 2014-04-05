@@ -6,10 +6,12 @@
   alias:
     test:
     - check_env
+    - py_check
     - py_test
     release:
     - py_clean
     - check_env
+    - py_check
     - py_test
     - dist
     - upload
