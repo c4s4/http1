@@ -100,7 +100,7 @@ def request(url, params={}, method='GET', body=None, headers={},
     _capitalized_headers = {}
     if capitalize_headers:
         for _name in _headers:
-            _capitalized = '-'.join(map(lambda s: s.capitalize(), _name.split('-'))) #pylint: disable=W0141
+            _capitalized = '-'.join([s.capitalize() for s in _name.split('-')])
             _capitalized_headers[_capitalized] =_headers[_name]
         _headers = _capitalized_headers
     if _https:
@@ -117,7 +117,7 @@ def request(url, params={}, method='GET', body=None, headers={},
             _name = _pair[0]
             _value = _pair[1]
             if capitalize_headers:
-                _name = '-'.join(map(lambda s: s.capitalize(), _name.split('-'))) #pylint: disable=W0141
+                _name = '-'.join([s.capitalize() for s in _name.split('-')])
             _response_headers[_name] = _value
     if _response.status >= 300 and _response.status < 400 and \
         follow_redirect:
