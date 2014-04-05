@@ -48,6 +48,15 @@ class Test(unittest.TestCase):
                           max_redirect=0)
         except http1.TooManyRedirectsException:
             pass
+    
+    def test_methods(self):
+        response = http1.get('http://www.sweetohm.net')
+        self.assertEqual(200,response.status)
+        self.assertTrue('<title>Sweetohm</title>' in response.body)
+        response = http1.head('http://cafebabe.free.fr')
+        self.assertEqual(301, response.status)
+        self.assertEqual('http://sweetohm.net',
+                         response.headers['Location'])
 
 
 # Run unit tests when started on command line

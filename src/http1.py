@@ -65,7 +65,12 @@ def request(url, params={}, method='GET', body=None, headers={},
       with username.
     - capitalize_headers: tells if headers should be capitalized (so that their
       names are all like 'Content-Type' for instance).
+    - follow_redirect: tells if http1 should follow redirections (status codes
+      3xx). Defaults to True.
+    - max_redirect: maximum number of redirections to follow. If there are too
+      many redirects, a TooManyRedirectsException is raised. Defaults to 3.
     Returns the response as a Response object.
+    Raise TooManyRedirectsException.
     NOTE: to call HTTPS URLs, Python must have been built with SSL support."""
     _urlparts = urlparse.urlparse(url)
     _host = _urlparts.netloc
@@ -136,3 +141,35 @@ def request(url, params={}, method='GET', body=None, headers={},
                     message=_response.reason,
                     headers=_response_headers,
                     body=_response.read())
+
+
+def get(**kwargs):
+    return request(method='GET', **kwarg)
+
+
+def head(**kwargs):
+    return request(method='HEAD', **kwarg)
+
+
+def post(**kwargs):
+    return request(method='POST', **kwarg)
+
+
+def put(**kwargs):
+    return request(method='PUT', **kwarg)
+
+
+def delete(**kwargs):
+    return request(method='DELETE', **kwarg)
+
+
+def connect(**kwargs):
+    return request(method='CONNECT', **kwarg)
+
+
+def options(**kwargs):
+    return request(method='OPTIONS', **kwarg)
+
+
+def trace(**kwargs):
+    return request(method='TRACE', **kwarg)
