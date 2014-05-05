@@ -60,6 +60,7 @@ This exception is thrown when there have been too many redirects (that is a numb
 Releases
 ========
 
+- **0.3.1** (2014-05-05): Fixed HTTP methods access.
 - **0.3.0** (2014-04-05): Added functions for HTTP methods.
 - **0.2.1** (2014-04-05): Added TooManyRedirectsException.
 - **0.2.0** (2014-04-05): Added option follow_redirect.
