@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+0.3.2: 2015-04-26
+-----------------
+
+Fixed relative redirects (thanks to John Vandenberg).
+
 0.3.1: 2014-05-05
 -----------------
 
