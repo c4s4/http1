@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
         response = http1.request('http://sweetohm.net')
         self.assertEquals(200, response.status)
         self.assertEquals('OK', response.message)
-        self.assertTrue('<title>Sweetohm</title>' in response.body)
+        self.assertTrue('Sweetohm' in response.body)
 
     def test_status_ko(self):
         response = http1.request('http://sweetohm.net/toto')
@@ -33,12 +33,12 @@ class Test(unittest.TestCase):
             pass
 
     def test_redirect(self):
-        response = http1.request('http://cafebabe.free.fr')
+        response = http1.request('http://sweetohm.net/blog/index.html')
         expected = 200
         actual = response.status
         self.assertEqual(expected, actual)
-        self.assertTrue('<title>Sweetohm</title>' in response.body)
-        response = http1.request('http://cafebabe.free.fr',
+        self.assertTrue('Sweetohm' in response.body)
+        response = http1.request('http://sweetohm.net/arc/python-dbapi.pdf',
                                  follow_redirect=False)
         expected = 301
         actual = response.status
@@ -52,11 +52,11 @@ class Test(unittest.TestCase):
     def test_methods(self):
         response = http1.get('http://www.sweetohm.net')
         self.assertEqual(200,response.status)
-        self.assertTrue('<title>Sweetohm</title>' in response.body)
-        response = http1.head('http://cafebabe.free.fr',
+        self.assertTrue('Sweetohm' in response.body)
+        response = http1.head('http://sweetohm.net/arc/python-dbapi.pdf',
                               follow_redirect=False)
         self.assertEqual(301, response.status)
-        self.assertEqual('http://sweetohm.net/',
+        self.assertEqual('http://sweetohm.net/pdf/python-dbapi.pdf',
                          response.headers['Location'])
 
 
