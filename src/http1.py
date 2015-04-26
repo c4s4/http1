@@ -128,7 +128,7 @@ def request(url, params={}, method='GET', body=None, headers={},
         follow_redirect:
         if max_redirect <= 0:
             raise TooManyRedirectsException
-        location = _response_headers['Location']
+        location = urlparse.urljoin(url, _response_headers['Location'])
         return request(url=location, params=params, method=method,
                        body=body, headers=headers,
                        content_type=content_type,
