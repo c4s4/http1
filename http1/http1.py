@@ -1,4 +1,4 @@
-# encoding=UTF-8
+# encoding: UTF-8
 
 """
 Module to perform HTTP requests. To do so:

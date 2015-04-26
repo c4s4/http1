@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # encoding=UTF-8
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+#pylint: disable=W0403
 import http1
 import unittest
 
