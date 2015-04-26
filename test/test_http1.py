@@ -59,6 +59,10 @@ class Test(unittest.TestCase):
         self.assertEqual('http://sweetohm.net/pdf/python-dbapi.pdf',
                          response.headers['Location'])
 
+    def test_relative_redirect(self):
+        response = http1.get('http://httpbin.org/redirect/2')
+        self.assertEqual(200, response.status)
+
 
 # Run unit tests when started on command line
 if __name__ == '__main__':
