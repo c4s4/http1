@@ -38,7 +38,7 @@ package: test clean
 	mkdir -p $(BUILD_DIR)
 	cp etc/setup.py $(BUILD_DIR)/
 	sed -i -e "s/VERSION/$(VERSION)/" $(BUILD_DIR)/setup.py
-	cp -r LICENSE README.rst etc/MANIFEST.in $(NAME) $(BUILD_DIR)/
+	cp -r LICENSE.txt README.rst etc/MANIFEST.in $(NAME) $(BUILD_DIR)/
 	cd $(BUILD_DIR) && python setup.py sdist -d .
 
 release: package
