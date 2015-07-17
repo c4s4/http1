@@ -1,7 +1,7 @@
 HTTP 1
 ======
 
-HTTP1 is a wrapper around httplib to perform HTTP requests in a single call. For instance, to get PyPI index of packages, you might write::
+HTTP1 is a wrapper around httplib to perform HTTP requests in a single call. For instance, to get PyPI index of packages, you might write:
 
     import http1
     
@@ -38,11 +38,11 @@ May raise a *TooManyRedirectsException*.
 
 *NOTE*: to call HTTPS URLs, Python must have been built with SSL support.
 
-There are dedicated functions for HTTP methods (*GET*, *HEAD*, *POST*, *PUT*, *DELETE*, *CONNECT*, *OPTIONS* and *TRACE*). Thus, to perform a head call for instance, you may write::
+There are dedicated functions for HTTP methods (*GET*, *HEAD*, *POST*, *PUT*, *DELETE*, *CONNECT*, *OPTIONS* and *TRACE*). Thus, to perform a head call for instance, you may write:
 
     response = http1.head('http://www.example.com')
 
-Which is the same as::
+Which is the same as:
 
     response = http1.request('http://www.example.com', method='HEAD')
 
