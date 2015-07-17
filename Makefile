@@ -25,7 +25,7 @@ init:
 clean:
 	@echo "$(YELLOW)Cleaning generated files$(CLEAR)"
 	rm -rf $(BUILD_DIR)
-	rm $(NAME)/*.pyc
+	rm -f `find $(NAME) -name "*.pyc"`
 
 check:
 	@echo "$(YELLOW)Checking Python code$(CLEAR)"
