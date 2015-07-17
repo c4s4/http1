@@ -1,5 +1,11 @@
 # Semantic Change Log
 
+- version: 0.4.1
+  date:    2015-07-17
+  added:
+  - "Moved document format to markdown (transformed to Rest for packaging)."
+  - "Added init target to build the Python virtual environment."
+
 - version: 0.4.0
   date:    2015-04-26
   added:
