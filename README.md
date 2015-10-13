@@ -7,6 +7,8 @@ HTTP1 is a wrapper around httplib to perform HTTP requests in a single call. For
     
     print http1.request('http://pypi.python.org/simple/').body
 
+Works on both Python 2 and 3 (was tested on *2.7.10* and *3.4.3*).
+
 request() method
 ----------------
 
