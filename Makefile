@@ -33,7 +33,7 @@ check:
 
 test: check
 	@echo "$(YELLOW)Running unit tests$(CLEAR)"
-	. env/bin/activate && python $(NAME)/test_$(NAME).py
+	. env/bin/activate && python -m $(NAME).test_$(NAME)
 
 package: test clean
 	@echo "$(YELLOW)Building package$(CLEAR)"
