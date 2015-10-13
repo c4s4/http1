@@ -1,4 +1,6 @@
 # encoding: UTF-8
+#
+# pylint: disable=F0401,E0611
 
 """
 Module to perform HTTP requests. To do so:
@@ -12,10 +14,21 @@ Module to perform HTTP requests. To do so:
 
 """
 
-import urllib
-import httplib
-import urlparse
+import sys
 import base64
+if sys.version_info[0] <= 2:
+    from urlparse import urlparse
+    from urllib import urlencode
+    from httplib import HTTPConnection
+    from httplib import HTTPSConnection
+    from urlparse import urljoin
+else:
+    from urllib.parse import urlparse
+    from urllib.parse import urlencode
+    from http.client import HTTPConnection
+    from http.client import HTTPSConnection
+    from urllib.parse import urljoin
+
 
 class Response(object):
     """HTTP response to encapsulates status code (200, 404, as an integer),
@@ -72,7 +85,7 @@ def request(url, params={}, method='GET', body=None, headers={},
     Returns the response as a Response object.
     Raise TooManyRedirectsException.
     NOTE: to call HTTPS URLs, Python must have been built with SSL support."""
-    _urlparts = urlparse.urlparse(url)
+    _urlparts = urlparse(url)
     _host = _urlparts.netloc
     _matrix_params = _urlparts.params
     _params = ''
@@ -81,7 +94,7 @@ def request(url, params={}, method='GET', body=None, headers={},
     if len(params) > 0:
         if len(_params) > 0:
             _params += '&'
-        _params += urllib.urlencode(params)
+        _params += urlencode(params)
     _path = _urlparts.path
     if _matrix_params:
         _path += ';%s' % _matrix_params
@@ -109,14 +122,14 @@ def request(url, params={}, method='GET', body=None, headers={},
             _capitalized_headers[_capitalized] =_headers[_name]
         _headers = _capitalized_headers
     if _https:
-        connection = httplib.HTTPSConnection(_host)
+        connection = HTTPSConnection(_host)
     else:
-        connection = httplib.HTTPConnection(_host)
+        connection = HTTPConnection(_host)
     connection.request(method, _path, body, _headers)
     _response = connection.getresponse()
     # method getheaders() not available in Python 2.2.1
     _response_headers = {}
-    _pairs = _response.msg.items()
+    _pairs = list(_response.msg.items())
     if _pairs:
         for _pair in _pairs:
             _name = _pair[0]
@@ -128,7 +141,8 @@ def request(url, params={}, method='GET', body=None, headers={},
         follow_redirect:
         if max_redirect <= 0:
             raise TooManyRedirectsException
-        location = urlparse.urljoin(url, _response_headers['Location'])
+        location = urljoin(url, _response_headers['Location'])
+        connection.close()
         return request(url=location, params=params, method=method,
                        body=body, headers=headers,
                        content_type=content_type,
@@ -137,10 +151,12 @@ def request(url, params={}, method='GET', body=None, headers={},
                        capitalize_headers=capitalize_headers,
                        follow_redirect=True,
                        max_redirect=max_redirect-1)
-    return Response(status=_response.status,
-                    message=_response.reason,
-                    headers=_response_headers,
-                    body=_response.read())
+    response =  Response(status=_response.status,
+                         message=_response.reason,
+                         headers=_response_headers,
+                         body=_response.read())
+    connection.close()
+    return response
 
 
 def get(*args, **kwargs):

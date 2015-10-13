@@ -1,5 +1,11 @@
 # Semantic Change Log: http://github.com/c4s4/changelog
 
+- version: 1.0.0
+  date:    2015-10-15
+  summary: Ported to Python 3
+  added:
+  - "Runs on Python 2 and 3 (was tested on Python 2.7.10 and 3.4.3)."
+
 - version: 0.5.0
   date:    2015-07-17
   added:
