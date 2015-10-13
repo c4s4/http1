@@ -1,6 +1,6 @@
 # Semantic Change Log: http://github.com/c4s4/changelog
 
-- version: 1.0.0
+- version: 1.0.1
   date:    2015-10-13
   summary: Ported to Python 3
   added:
