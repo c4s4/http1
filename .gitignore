@@ -1,5 +1,4 @@
-build
-env
-.idea
+/build/
+/venv/
+__pycache__/
 *.pyc
-.ropeproject/

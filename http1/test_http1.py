@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding=UTF-8
 
-#pylint: disable=W0403
-from . import http1
 import unittest
+import http1.http1
+
 
 class Test(unittest.TestCase):
 
@@ -54,7 +54,7 @@ class Test(unittest.TestCase):
         response = http1.head('http://sweetohm.net/arc/python-dbapi.pdf',
                               follow_redirect=False)
         self.assertEqual(301, response.status)
-        self.assertEqual('http://sweetohm.net/pdf/python-dbapi.pdf',
+        self.assertEqual('https://sweetohm.net/arc/python-dbapi.pdf',
                          response.headers['Location'])
 
     def test_relative_redirect(self):
@@ -65,4 +65,3 @@ class Test(unittest.TestCase):
 # Run unit tests when started on command line
 if __name__ == '__main__':
     unittest.main()
-

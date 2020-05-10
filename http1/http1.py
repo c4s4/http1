@@ -1,36 +1,26 @@
 # encoding: UTF-8
-#
-# pylint: disable=F0401,E0611
 
 """
 Module to perform HTTP requests. To do so:
 
-  import http
+  import http1
 
-  response = http.request('www.google.com')
-  print 'Status: %s (%s)' % (response.status, response.message)
-  print 'Headers: %s' % response.headers
-  print 'Body: %s' % response.body.strip()
+  response = http1.request('http://www.google.com')
+  print(f'Status: {response.status} ({response.message})')
+  print(f'Headers: {response.headers}')
+  print(f'Body: {response.body.strip()}')
 
 """
 
-import sys
 import base64
-if sys.version_info[0] <= 2:
-    from urlparse import urlparse
-    from urllib import urlencode
-    from httplib import HTTPConnection
-    from httplib import HTTPSConnection
-    from urlparse import urljoin
-else:
-    from urllib.parse import urlparse
-    from urllib.parse import urlencode
-    from http.client import HTTPConnection
-    from http.client import HTTPSConnection
-    from urllib.parse import urljoin
+from urllib.parse import urljoin
+from urllib.parse import urlparse
+from urllib.parse import urlencode
+from http.client import HTTPConnection
+from http.client import HTTPSConnection
 
 
-class Response(object):
+class Response:
     """HTTP response to encapsulates status code (200, 404, as an integer),
     message (such as 'OK', 'Not Found', as a string), headers (as a
     dictionnary), and body (as a string)."""

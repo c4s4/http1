@@ -1,16 +1,14 @@
-HTTP 1
-======
+# HTTP 1
 
 HTTP1 is a wrapper around httplib to perform HTTP requests in a single call. For instance, to get PyPI index of packages, you might write:
 
     import http1
-    
+
     print http1.request('http://pypi.python.org/simple/').body
 
 Works on both Python 2 and 3 (was tested on *2.7.10* and *3.4.3*).
 
-request() method
-----------------
+## request() method
 
 This method performs an HTTP request. The signature of the request method is the following:
 
@@ -48,13 +46,11 @@ Which is the same as:
 
     response = http1.request('http://www.example.com', method='HEAD')
 
-Response object
----------------
+## Response object
 
 This object encapsulates status code (*200*, *404*, as an integer), message (such as *OK*, *Not Found*, as a string), headers (as a dictionnary), and body (as a string).
 
-TooManyRedirectsException
--------------------------
+## TooManyRedirectsException
 
 This exception is thrown when there have been too many redirects (that is a number of refirects greater than *max_redirect*).
 
